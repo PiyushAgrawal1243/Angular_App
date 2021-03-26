@@ -1,0 +1,28 @@
+
+.container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+.container-div1
+{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+
+.container-div2
+{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  border: 1px solid black;
+  margin-top: 20px;
+}
+p{
+  font-size: 20px;
+}

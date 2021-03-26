@@ -1,0 +1,51 @@
+/*.form-group*/
+/*{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    height: 50px;*/
+/*    width: 40%;*/
+/*    margin: 20px auto 20px auto;*/
+/*    font-size: 25px;*/
+/*}*/
+
+/*.section-div{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+
+/*}*/
+
+
+/*input{*/
+/*    height: auto;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.detail-section{*/
+/*    display: block;*/
+/*    width: 500px;*/
+/*    height: auto;*/
+/*    background-color:burlywood ;*/
+/*  border: 1px solid black;*/
+/*}*/
+
+
+/*nav {*/
+/*display: flex;*/
+/*flex-direction: column;*/
+/*width: 100%;*/
+/*}*/
+
+
+/*nav > ul >li{*/
+/*    margin: 10px;*/
+/*    font-size: 20px;*/
+/*}*/
+
+/*.form-section*/
+/*{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    width:90%;*/
+/*    background-color: coral;*/
+/*    border: 1px solid black;*/
+/*}*/
