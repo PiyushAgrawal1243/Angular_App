@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
+import { Injectable , EventEmitter} from '@angular/core';
+import {Observable, of , Subject} from 'rxjs';
 import { User } from './user';
 import {UserData} from './UserData';
 import {ItemList} from './item';
@@ -11,8 +11,14 @@ export class AppserviceService {
 
   constructor() { }
 
+  activatedEmmiter = new Subject<boolean>();
+
   getUserData(): User[]{
     return UserData;
+  }
+
+  addUserData(user: { Email: string; gender: string; Name: string; Phone_No: string; Password: string }): void{
+    UserData.push(user);
   }
   getItem(): string[] {
     return ItemList;
@@ -26,8 +32,7 @@ export class AppserviceService {
     ItemList.splice(index, 1);
   }
   // tslint:disable-next-line:typedef
-  getUser(id: number): Observable<User | undefined>{
-    console.log(UserData.map(user => user.id === id));
-    return  of(UserData.find(user => user.id === id));
+  getUser(name: string): Observable<User | undefined>{
+    return  of(UserData.find(user => user.Name === name));
   }
 }

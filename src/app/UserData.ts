@@ -1,8 +1,7 @@
-
 import {User} from './user';
 
-export const  UserData: User[] = [
-    {id: 1, Name: 'Piyush' , Email: 'PiyushAgrawal@gmail.com' },
-    {id: 2, Name: 'Shubhrank', Email: 'Shubhrank@gmail.com' },
-    {id: 3, Name: 'Ambuj', Email: 'Ambuj@gmail.com' }
+export const UserData: User[] = [
+    { Name: 'Piyush', Email: 'PiyushAgrawal@gmail.com', Password: 'Piyush123', Phone_No: '9045131365', gender: 'Male'},
+    { Name: 'Shubhrank', Email: 'Shubhrank@gmail.com', Password: 'Shubhrank123', Phone_No: '9045131365', gender: 'Male'},
+    { Name: 'Ambuj', Email: 'Ambuj@gmail.com', Password: 'Ambuj123', Phone_No: '9045131365', gender: 'Male'}
 ];

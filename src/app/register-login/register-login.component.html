@@ -1,0 +1,79 @@
+<div class=" row mt-5 d-flex justify-content-center align-self-center">
+    <div class="col-xl-3">
+        <h1 class="card-header border border-success">Enter Your Detail</h1>
+        <div class="container-fluid">
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
+                <div class="form-group">
+                    <label for="UserName">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your name"
+                           ngModel name="userName" required #name='ngModel'>
+                    <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter valid name</span>
+                </div>
+                <div class="form-group">
+                    <label for="UseEmail">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter your email"
+                           ngModel name="useremail" required email
+                           #email='ngModel'>
+                    <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter valid name</span>
+                </div>
+                <div class="form-group">
+                    <label for="UserPassword">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter your password"
+                           ngModel #password='ngModel' name="userpassword" required>
+                    <span class="text-danger"
+                          *ngIf="!password.valid && password.touched">Please enter valid Password</span>
+                </div>
+                <div class="form-group">
+                    <label for="UserConfirmPassword">Repassword</label>
+                    <input type="password" class="form-control" placeholder="Confirm password" required
+                           ngModel
+                           name="confirmpassword"
+                           #confirmPassword='ngModel'>
+                    <span class="text-danger"
+                          *ngIf="!confirmPassword.valid && confirmPassword.touched">Password and Confirm Password should be same!</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label">Phone No.</label>
+                    <input type="number" class="form-control" ngModel placeholder="Number" required
+                           #phoneNumber='ngModel'
+                           name="phonenumber">
+                    <span class="text-danger" *ngIf="!phoneNumber.valid && phoneNumber.touched">Please enter valid Phone Number</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <label class="form-check-label">Gender</label>
+                    <label><input type="radio" ngModel name="gender" value="Male"> Male</label>
+                    <label><input type="radio" ngModel name="gender" value="Female"> Female</label>
+                    <label><input type="radio" ngModel name="gender" value="Other"> Other</label>
+                </div>
+                <div class="form-group ">
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-danger ml-1">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <h1 class="card-header border border-success" >Login Form</h1>
+        <form (ngSubmit)="signIN()" #signIn='ngForm'>
+            <div class="form-group">
+                <label class="form-check-label">Email</label>
+                <input class="form-control" type="email" name="userEmail" ngModel placeholder="Enter Your Email" email
+                       required
+                       #email1='ngModel'>
+                <span class="text-danger" *ngIf="!email1.valid && email1.touched">Please enter your Email</span>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label">Password</label>
+                <input class="form-control" type="password" name="userpassword" ngModel
+                       placeholder="Enter Your Password" required
+                       #password1='ngModel'>
+                <span class="text-danger"
+                      *ngIf="password1.valid && password1.touched">Please enter Valid Password</span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary" >Login</button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -6,13 +6,14 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {UserDetailComponent} from './user-detail/user-detail.component';
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {HomeChildComponent} from './home/home-child/home-child.component';
+import {SubjectComponent} from './home/subject/subject.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'Home', component: HomeComponent , children: [
-      { path: '' , component: AboutComponent},
-      {path: 'HomeChild/:id/:name' , component: HomeChildComponent}
+      { path: '' , component: SubjectComponent},
+      {path: 'HomeChild/:name' , component: HomeChildComponent}
     ]},
   {path: 'About', component: AboutComponent},
   {path: 'UserDetail/:id/:name', component: UserDetailComponent},

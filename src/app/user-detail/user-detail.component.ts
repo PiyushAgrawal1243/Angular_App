@@ -13,8 +13,8 @@ export class UserDetailComponent implements OnInit {
   user: User | undefined;
 
   constructor(private  routes: ActivatedRoute, private appService: AppserviceService) {
-    const id = +this.routes.snapshot.params.id;
-    this.appService.getUser(id).subscribe(  (user) => { console.log(user); });
+    const name = this.routes.snapshot.params.name;
+    this.appService.getUser(name).subscribe(  (user) => { console.log(user); });
     console.log(this.user , "without subscribe");
   }
 

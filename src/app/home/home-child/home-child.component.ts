@@ -12,11 +12,11 @@ export class HomeChildComponent implements OnInit {
   user: User | undefined ;
 
   constructor(private route: ActivatedRoute , private  appService: AppserviceService) {
-    const id = +this.route.snapshot.params.id;
-    this.appService.getUser(id).subscribe(user => this.user = user);
+    const name = this.route.snapshot.params.name;
+    this.appService.getUser(name).subscribe(user => this.user = user);
     // params subscribing that are change in url
     this.route.params.subscribe((params: Params) => {
-       this.appService.getUser(+params.id).subscribe(user => this.user = user);
+       this.appService.getUser(params.name).subscribe(user => this.user = user);
     });
 
   }
