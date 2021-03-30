@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
@@ -19,6 +19,10 @@ import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {HomeChildComponent} from './home/home-child/home-child.component';
 import {SubjectComponent} from './home/subject/subject.component';
 import {RegisterLoginComponent} from './register-login/register-login.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { GameControlComponent } from './dashboard/game-control/game-control.component';
+import { OddComponent } from './dashboard/odd/odd.component';
+import { EvenComponent } from './dashboard/even/even.component';
 
 
 
@@ -41,11 +45,16 @@ import {RegisterLoginComponent} from './register-login/register-login.component'
         HomeChildComponent,
         SubjectComponent,
         RegisterLoginComponent,
+        ReactiveFormComponent,
+        GameControlComponent,
+        OddComponent,
+        EvenComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
