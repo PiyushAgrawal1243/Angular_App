@@ -15,3 +15,12 @@ button
 p{
   color: blue;
 }
+
+.lodadedData{
+  background-color:#130CED;
+  border-radius: 10px;
+  padding: 30px;
+  -webkit-box-shadow: 0 7px 4px #777;
+  -moz-box-shadow: 0 7px 4px #777;
+  box-shadow: 0 7px 4px #777;
+}

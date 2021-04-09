@@ -25,3 +25,10 @@
 p {
     font-size: 20px;
 }
+.main{
+    position: relative;
+    margin-top: 60px;
+    width: 100vw;
+    height: 100vh;
+
+}

@@ -2,33 +2,45 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {CanComponentDectivate} from '../../Services/canDectivate_guard.service';
+import {Router} from '@angular/router';
+import {LoginService} from '../../Services/login.service';
+import {AuthService} from '../../Services/Auth.service';
 
 @Component({
     selector: 'app-reactive-form',
     templateUrl: './reactive-form.component.html',
     styleUrls: ['./reactive-form.component.css']
 })
-export class ReactiveFormComponent implements OnInit {
+export class ReactiveFormComponent implements OnInit, CanComponentDectivate {
 
     // @ts-ignore
     signUpForm: FormGroup;
     // @ts-ignore
+    loginForm: FormGroup;
+    // @ts-ignore
     showValidationMessage: boolean;
+    userFilledForm = true;
+    checkFrom: boolean | undefined;
+    spinner = false;
 
-    constructor(private fb: FormBuilder, private http: HttpClient) {
+    constructor(private form: FormBuilder, private http: HttpClient, private authService: AuthService,
+                private router: Router,
+                private loginService: LoginService, private registerService: AuthService) {
+        localStorage.setItem('router', 'RegitserLogin');
+
     }
 
     ngOnInit(): void {
-        this.fetchData();
-        this.signUpForm = this.fb.group({
-            projectName: [null, [Validators.required, this.invalidProjectName.bind(this)], this.asyncInvalidProject.bind(this)],
+        this.signUpForm = this.form.group({
             username: [null, Validators.required],
             email: [null, [Validators.required, Validators.email]],
             password: [null, Validators.required],
-            gender: ['Male'],
-            selectValue: ['Stable'],
-            hobbies: new FormArray([])
+        });
+
+        this.loginForm = this.form.group({
+            loginEmail: ['', [Validators.required, Validators.email]],
+            loginPassword: ['', Validators.required]
         });
     }
 
@@ -37,67 +49,85 @@ export class ReactiveFormComponent implements OnInit {
         return this.signUpForm.controls;
     }
 
-    onSubmit(): void {
-        console.log(this.signUpForm);
-        this.http.post(
-            'https://angularproject-b4aba-default-rtdb.firebaseio.com/posts.json',
-            this.signUpForm.value).subscribe(responseData => {
-            console.log(responseData);
-        });
-
-    }
-
-    fetchData(): void {
-        this.http.get(' https://app.ismartrecruit.com/jobDescription?x=E7pa25vbGR1cy5jb21fNDVfV19lbg==Q9e&view=grid')
-            .pipe(map(responseData =>{
-                const postArray = [];
-                for (const key in responseData)
-                {
-                   if (responseData.hasOwnProperty(key)) {
-                       // @ts-ignore
-                       postArray.push({...responseData[key], id: key});
-                   }
-                }
-                return postArray;
-            }))
-            .subscribe(post => { console.log(post); });
-
-
-    }
-
-    // tslint:disable-next-line:typedef
-    onAddHobby() {
-        const control = new FormControl(null, Validators.required);
-        // @ts-ignore
-        (this.signUpForm.get('hobbies') as FormArray).push(control);
-
-    }
-
-    // tslint:disable-next-line:typedef
-    getControls() {
-        return (<FormArray> this.signUpForm.get('hobbies')).controls;
-    }
-
-    invalidProjectName(control: FormControl): { [p: string]: boolean } | null {
-        if (control.value === 'Test') {
-            return {invalidProjectName: true};
+    checkFormData(): boolean {
+        if (this.signUpForm.invalid) {
+            this.loginService.modalData('Form', 'Please fill this form and then submit this Form');
+            // @ts-ignore
+            document.getElementById('modalButton').click();
+            this.checkFrom = false;
+            return false;
+        } else {
+            this.checkFrom = true;
+            return true;
         }
-        return null;
     }
 
-    asyncInvalidProject(control: FormControl): Promise<any> | Observable<any> {
-        const promeis = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    if (control.value === 'Test') {
-                        resolve({projectName: true});
-                    } else {
-                        resolve(null);
-                    }
-                }, 1500);
-            }
-        );
-        return promeis;
+    // @ts-ignore
+    canDeactive(): Observable<boolean> | Promise<boolean> | boolean {
+        if (this.signUpForm.controls.username.value != null ||
+            this.signUpForm.controls.email.value != null ||
+            this.signUpForm.controls.password.value != null) {
+            console.log(this.signUpForm.value);
+            this.loginService.modalData('Angular.io', 'You are on our Registratin page if you not register you will not get our survice');
+            // @ts-ignore
+            document.getElementById('modalButton').click();
+
+        } else {
+            return true;
+        }
     }
+
+    onReset(): void {
+        this.signUpForm.reset();
+    }
+
+    onSubmit(): void {
+        if (this.checkFormData()) {
+            console.log(this.signUpForm);
+            this.spinner = true;
+            const email = this.signUpForm.controls.email.value;
+            const password = this.signUpForm.controls.password.value;
+            this.registerService.signUp(email, password)
+                .subscribe(resData => {
+                        this.router.navigate(['dashboard']);
+                        this.signUpForm.reset();
+                    },
+                    errorMessage => {
+                        this.spinner = false;
+                        this.loginService.modalData('Error', errorMessage);
+                        // @ts-ignore
+                        document.getElementById('modalButton').click();
+                    });
+
+
+        }
+    }
+
+    onLogin(): void {
+        if (!this.loginForm.invalid) {
+            this.spinner = true;
+            const email = this.loginForm.controls.loginEmail.value;
+            const password = this.loginForm.controls.loginPassword.value;
+            this.registerService.login(email, password).subscribe(resData => {
+                console.log(resData);
+                this.spinner = true;
+                localStorage.setItem('router', 'dashboard');
+                this.router.navigate([localStorage.getItem('router')]);
+            }, errorMessage => {
+                this.spinner = false;
+                this.loginService.modalData('Error', errorMessage);
+                // @ts-ignore
+                document.getElementById('modalButton').click();
+            });
+        } else {
+            console.log(this.loginForm.value),
+                this.loginService.modalData('Login', 'Please enter valid email address and password');
+            // @ts-ignore
+            document.getElementById('modalButton').click();
+        }
+    }
+
+
 
 
 }

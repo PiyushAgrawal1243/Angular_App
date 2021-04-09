@@ -8,9 +8,9 @@
                 <h1 class="card-header border-success">User List</h1>
                 <ul class="list-group" *ngFor="let user of userData">
                     <li class="list-group-item m-2 border-success shadow">
-                        <a class="nav-link " routerLink="HomeChild/{{user.Name}}" routerLinkActive="active"
-                           [queryParams]="{ allowEdit: '1' }"
-                           fragment="loading">Name:{{user.Name}}</a></li>
+                        <a class="nav-link " routerLink="HomeChild/{{user.Name}}" (click)="storingUserAction( user.Name )" routerLinkActive="active"
+                           [queryParams]="{allowEdit: user.Name} "
+                           fragment="loading" >Name:{{user.Name}}</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,16 +42,7 @@
         <div *ngIf="didActive">
             <h1 class="text-info">Active</h1>
         </div>
-        <table style="background-color: aqua;height: 30px;width: 100%;">
-            <tr>
-                <td [colSpan]="1+1">Three two</td>
-                <td>Hello</td>
-            </tr>
-            <tr>
-                <td>Ram</td>
-                <td>Ram</td>
-            </tr>
-        </table>
+
     </div>
 </div>
 

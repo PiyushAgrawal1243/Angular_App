@@ -1,34 +1,48 @@
 import {Component, OnInit} from '@angular/core';
-import {AppserviceService} from './appservice.service';
-import {User} from './user';
+import {AppserviceService} from './Services/appservice.service';
+import {Router} from '@angular/router';
+import {LoginService} from './Services/login.service';
+import {AuthService} from './Services/Auth.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
     title = 'Angular';
     user: boolean | undefined;
     Item: string[] = [];
+    modalTitle: string | undefined;
+    modalMessage: string | undefined;
+    subscribe: boolean | undefined;
 
-    value = 100;
-    // Displays 'Dr IQ', '<no name set>', 'Bombasto'
-    image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHp6-re94SyZb-6tmYjAvNrxJaLG1CtozyUw&usqp=CAU';
+    constructor(private appSerVice: AppserviceService,
+                private authService: AuthService,
+                private  router: Router, private loginService: LoginService) {
+        this.loginService.title.subscribe(data => this.modalTitle = data);
+        this.loginService.message.subscribe(data => this.modalMessage = data);
+        this.loginService.activatedUser.subscribe(resdata => this.subscribe = resdata);
 
-    evilTitle = 'Template <script>alert("evil never sleeps")</script> Syntax';
 
-    currentYear(): any {
-        return (new Date()).getFullYear();
     }
 
-    constructor(private appSerVice: AppserviceService) {
-        this.appSerVice.activatedEmmiter.subscribe(didActive => this.user = didActive);
-    }
-
-    // tslint:disable-next-line:use-lifecycle-interface
     ngOnInit(): void {
+        this.authService.autoLogin();
         this.getItem();
+        if (this.subscribe) {
+            this.router.navigate(['dashboard']);
+        } else if (localStorage.getItem('user') == null) {
+            // @ts-ignore
+            localStorage.getItem('router', 'Angular.io');
+            this.router.navigate([localStorage.getItem('router')]);
+
+        } else {
+            const data = localStorage.getItem('router');
+            this.router.navigate([data]);
+
+        }
+
     }
 
     getItem(): void {
@@ -38,5 +52,6 @@ export class AppComponent {
     addItem(item: string): void {
         this.Item.push(item);
     }
+
 
 }

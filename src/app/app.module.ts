@@ -1,62 +1,72 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
 import {AppRoutingModule} from './app-routing.module';
+
 import {AppComponent} from './app.component';
-import {NavComponent} from './nav/nav.component';
-import {AboutComponent} from './about/about.component';
-import {HomeComponent} from './home/home.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {AdBannerComponent} from './ad-banner/ad-banner.component';
-import {HighlightDirective} from './highlight.directive';
-import {ExponentialStrengthPipe} from './exponential-strength.pipe';
-import {ModuloPipe} from './modulo.pipe';
-import {ScrollDirective} from './Scroll.directive';
-import {BetterDirectiveDirective} from './better-directive.directive';
-import {DropDownDirective} from './directives/dropDown.directive';
-import {UserDetailComponent} from './user-detail/user-detail.component';
-import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
-import {HomeChildComponent} from './home/home-child/home-child.component';
-import {SubjectComponent} from './home/subject/subject.component';
-import {RegisterLoginComponent} from './register-login/register-login.component';
-import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
-import { GameControlComponent } from './dashboard/game-control/game-control.component';
-import { OddComponent } from './dashboard/odd/odd.component';
-import { EvenComponent } from './dashboard/even/even.component';
-
-
+import {NavComponent} from './Components/nav/nav.component';
+import {AboutComponent} from './Components/about/about.component';
+import {HighlightDirective} from './Components/directives/highlight.directive';
+import {ExponentialStrengthPipe} from './pipes/exponential-strength.pipe';
+import {ModuloPipe} from './pipes/modulo.pipe';
+import {BetterDirectiveDirective} from './Components/directives/better-directive.directive';
+import {DropDownDirective} from './Components/directives/dropDown.directive';
+import {NotFoundPageComponent} from './Components/not-found-page/not-found-page.component';
+import {ReactiveFormComponent} from './Components/reactive-form/reactive-form.component';
+import {AuthGuard} from './Services/authGuard.service';
+import {CanDectivate_guardService} from './Services/canDectivate_guard.service';
+import {AppHomePageComponent} from './Components/app-home-page/app-home-page.component';
+import {LoginService} from './Services/login.service';
+import {AuthInterceptorService} from './Services/auth-interceptor.service';
+import {SharedModule} from './SharedUI/shared.module';
+import {AuthService} from './Services/Auth.service';
+import * as fromApp from '../app/Reducer/app.reducer';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 
 @NgModule({
     declarations: [
         AppComponent,
+        AppHomePageComponent,
         NavComponent,
         AboutComponent,
-        HomeComponent,
-        DashboardComponent,
-        AdBannerComponent,
         HighlightDirective,
         ExponentialStrengthPipe,
         ModuloPipe,
-        ScrollDirective,
         BetterDirectiveDirective,
         DropDownDirective,
-        UserDetailComponent,
         NotFoundPageComponent,
-        HomeChildComponent,
-        SubjectComponent,
-        RegisterLoginComponent,
         ReactiveFormComponent,
-        GameControlComponent,
-        OddComponent,
-        EvenComponent,
+
+
     ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
+        BrowserModule.withServerTransition({appId: 'serverApp'}),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        StoreModule.forRoot(fromApp.appReducer),
+        SharedModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+
     ],
-    providers: [],
+    providers: [AuthService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+        },
+        AuthGuard,
+        CanDectivate_guardService,
+        LoginService ],
     bootstrap: [AppComponent]
 })
 

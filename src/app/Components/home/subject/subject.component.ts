@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {AppserviceService} from '../../Services/appservice.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../../_interfaces/user';
 
 @Component({
-  selector: 'app-subject',
-  templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.css']
+    selector: 'app-subject',
+    templateUrl: './subject.component.html',
+    styleUrls: ['./subject.component.css']
 })
 export class SubjectComponent implements OnInit {
+    user: User | undefined;
 
-  constructor(private  appService: AppserviceService) { }
+    constructor( ) {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
 
-  onActivate(): void
-  {
-    this.appService.activatedEmmiter.next(true);
-  }
+    }
+
 }

@@ -1,16 +1,26 @@
 <div *ngIf="user" class="container border">
-  <h1>Edit User detail </h1>
-  <form class="form-group">
-    <div class="col-lg-12 container">
-      <label class="form-check-label">Name </label>
-      <input [(ngModel)]="user.Name" class="form-control form-control-lg" [ngModelOptions]="{standalone: true}" >
+    <div *ngIf="allowEdit">
+        <h1>Edit User detail </h1>
+        <form class="form-group">
+            <div class="col-lg-12 container">
+                <label class="form-check-label">Name </label>
+                <input disabled [(ngModel)]="userName" class="form-control form-control-lg"
+                       [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-lg-12">
+                <label class="form-check-label">Email</label>
+                <input  [(ngModel)]="userEmail" class="form-control form-control-lg "
+                       [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-lg-12">
+                <input type="submit" role="button" on-click="onUpdateUser()" class="btn btn-primary mt-1">
+                <button type="button" class="btn btn-primary ml-1 mt-1 " on-click="goBack()" >Back</button>
+            </div>
+
+        </form>
     </div>
-    <div class="col-lg-12" >
-      <label class="form-check-label">Email</label>
-      <input [(ngModel)]="user.Email" class="form-control form-control-lg " [ngModelOptions]="{standalone: true}" >
+    <div *ngIf="!allowEdit">
+        <h1>You are not allowed to edit</h1>
+        <button class="btn btn-primary" on-click="goBack()" >Go Back</button>
     </div>
-    <div class="col-lg-12" >
-      <input type="submit" role="button" class="btn btn-primary mt-1">
-    </div>
-  </form>
 </div>

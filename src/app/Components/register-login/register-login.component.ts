@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AppserviceService} from '../Services/appservice.service';
+import {AppserviceService} from '../../Services/appservice.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-register-login',
@@ -19,11 +20,13 @@ export class RegisterLoginComponent implements OnInit {
         gender: ''
     };
 
-    constructor( private  appService: AppserviceService) {
+    constructor(private  appService: AppserviceService, private route: Router) {
     }
+
 
     ngOnInit(): void {
     }
+
 
     onSubmit(): void {
         // console.log(Form);
@@ -35,12 +38,12 @@ export class RegisterLoginComponent implements OnInit {
         console.log(this.user);
         console.log(this.signupForm?.value);
         this.appService.addUserData(this.user);
-        this.appService.activatedEmmiter.next(true);
     }
 
-    signIN(): void
-    {
-        this.appService.activatedEmmiter.next(true);
+    signIN(): void {
+        this.route.navigate(['/dashboard']);
     }
+
+
 
 }
