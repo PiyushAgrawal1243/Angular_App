@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="container-fluid border d-flex justify-content-center">
+    <h1>First App of Angular By Piyush Agrawal</h1>
+  </div>
+  <div class="d-flex m-3 justify-content-center align-items-center border">
+    <div class="d-flex flex-column m-3" >
+      <ul class="list-group">
+        <li class="list-group-item " *ngFor="let user of userData">
+          <a>{{user.Name}}</a></li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label class="form-check-label">Add Item</label>
+      <input class="form-control" type="text" #Item>
+      <button class="btn btn-primary" (click)="addItemToItemList(Item.value)">Add Item</button>
+      <button class="btn btn-primary btn-danger" (click)="removeItem(Item.value)">Remove Item</button>
+    </div>
+  </div>
+<!--  <div class="col-lg-5">-->
+<!--    <app-game-control></app-game-control>-->
+<!--  </div>-->
+</div>
+
+
