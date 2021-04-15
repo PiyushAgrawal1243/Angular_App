@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AppserviceService} from './Services/appservice.service';
+import {Component, OnInit } from '@angular/core';
+import {AppserviceService} from './_services/appservice.service';
 import {Router} from '@angular/router';
-import {LoginService} from './Services/login.service';
-import {AuthService} from './Services/Auth.service';
+import {LoginService} from './_services/login.service';
+import {AuthService} from './_services/Auth.service';
+import {resolve} from '@angular/compiler-cli/src/ngtsc/file_system';
 
 @Component({
     selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
                 private  router: Router, private loginService: LoginService) {
         this.loginService.title.subscribe(data => this.modalTitle = data);
         this.loginService.message.subscribe(data => this.modalMessage = data);
+
         this.loginService.activatedUser.subscribe(resdata => this.subscribe = resdata);
 
 
@@ -33,14 +35,10 @@ export class AppComponent implements OnInit{
         if (this.subscribe) {
             this.router.navigate(['dashboard']);
         } else if (localStorage.getItem('user') == null) {
-            // @ts-ignore
-            localStorage.getItem('router', 'Angular.io');
-            this.router.navigate([localStorage.getItem('router')]);
-
+           this.router.navigate(['Angular.io']);
         } else {
             const data = localStorage.getItem('router');
             this.router.navigate([data]);
-
         }
 
     }
@@ -50,7 +48,7 @@ export class AppComponent implements OnInit{
     }
 
     addItem(item: string): void {
-        this.Item.push(item);
+        this.appSerVice.addItem(item);
     }
 
 
