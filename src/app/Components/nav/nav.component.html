@@ -1,0 +1,57 @@
+<nav class="navbar fixed-top position-fixed navbar-expand-lg navbar-light nav border">
+    <a class="navbar-brand text-white text-font-size">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div *ngIf="loginNav" class="row ">
+            <ul class="navbar-nav mr-auto" >
+                <li class="nav-item active">
+                    <a class="nav-link text-white" routerLinkActive="active" routerLink="dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" routerLinkActive="active" routerLink="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" routerLinkActive="active" routerLink="About">About</a>
+                </li>
+                <li class="dropdown" id="dropDownList" appdropDownDirective>
+                    <a class="nav-link text-white dropdown-toggle" id="navbarDropdown" role="button"
+                       data-toggle="dropdown">
+                        Manage
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white disabled"  tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+                <button class="btn btn-danger"  (click)="Logout()" >Logout</button>
+
+        </div>
+        <!--    <form class="form-inline my-2 my-lg-0">-->
+        <!--      <input class="form-control mr-sm-2" type="enter item" #newItemInput placeholder="Enter item" aria-label="Search">-->
+        <!--      <button class="btn btn-outline-success my-2 my-sm-0" on-click="addNewItem()" type="submit">Add</button>-->
+        <!--    </form>-->
+        <div class="d-flex" *ngIf="!loginNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white text-font-size " href="#" (click)="navigateToHome()">Home</a>
+                </li>
+                <li class="nav-item d-flex align-self-center">
+                    <a class="btn btn-success " (click)="navigateToRegisterLogin()" routerLinkActive="active">Register/Login</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

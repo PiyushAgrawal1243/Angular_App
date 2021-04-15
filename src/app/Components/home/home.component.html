@@ -1,0 +1,48 @@
+<div class="position-relative ">
+    <div class="d-flex align-items-center justify-content-center  ">
+        <h1 class="text-primary">Welcome to Home Page </h1>
+    </div>
+    <div class="row position-relative ">
+        <div class="col-lg-5 ">
+            <nav>
+                <h1 class="card-header border-success">User List</h1>
+                <ul class="list-group" *ngFor="let user of userData">
+                    <li class="list-group-item m-2 border-success shadow">
+                        <a class="nav-link " routerLink="HomeChild/{{user.Name}}" (click)="storingUserAction( user.Name )" routerLinkActive="active"
+                           [queryParams]="{allowEdit: user.Name} "
+                           fragment="loading" >Name:{{user.Name}}</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-7">
+            <router-outlet></router-outlet>
+        </div>
+
+        <!--    <div class='col-lg '>-->
+        <!--      <form>-->
+        <!--&lt;!&ndash;        <div *ngFor="let user of userData">&ndash;&gt;-->
+        <!--&lt;!&ndash;          <div>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <label class="text-info m-2" for='name-label'>Name</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <input class="form-control m-2" type="text" placeholder="enter your name" [(ngModel)]="user.Name" required&ndash;&gt;-->
+        <!--&lt;!&ndash;                   [ngModelOptions]="{standalone: true}">&ndash;&gt;-->
+        <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;          <div>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <label class="text-info m-2" for='email-label'>Email</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <input class="form-control m-2" type="email" [(ngModel)]="user.Email" placeholder="enter your name" required&ndash;&gt;-->
+        <!--&lt;!&ndash;                   [ngModelOptions]="{standalone: true}">&ndash;&gt;-->
+        <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;          <div>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <button class="btn btn-primary m-2" type="submit">Submit</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </div>&ndash;&gt;-->
+        <!--      </form>-->
+        <!--    </div>-->
+    </div>
+    <div>
+        <div *ngIf="didActive">
+            <h1 class="text-info">Active</h1>
+        </div>
+
+    </div>
+</div>
+

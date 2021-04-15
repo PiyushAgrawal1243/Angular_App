@@ -1,0 +1,62 @@
+<div class="row justify-content-center m-3 ">
+    <div class="m-3 justify-content-center align-items-center" *ngIf="spinner">
+       <app-spinner></app-spinner>
+    </div>
+
+    <!--Registration Form -->
+    <div class="col-xl-5 col-md-5 m-3" *ngIf="!spinner">
+        <h1>Reactive Form In Angular</h1>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="form-check-label">Name</label>
+                <input type="text" class="form-control" formControlName="username" id="username" required
+                       name="username">
+                <span class="text-danger"
+                      *ngIf="!signUpControls.username.valid && signUpControls.username.touched">
+                    This field is required
+                    </span>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label">Mail</label>
+                <input type="email" class="form-control" id="useremail" formControlName="email" name="useremail">
+                <span class="text-danger" *ngIf="!signUpControls.email.valid && signUpControls.email.touched">
+                    Please Enter valid email</span>
+            </div>
+            <div class="form-group">
+                <label class="form-check-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password"
+                       name="userpassword">
+            </div>
+            <span class="text-danger" *ngIf="!signUpControls.password.valid && signUpControls.password.touched">
+                Please enter valid Password</span>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                |
+                <button type="button" (click)="onReset()" class="btn btn-primary">Reset</button>
+            </div>
+        </form>
+    </div>
+    <!--Login Form -->
+    <div class="col-lg-5 col-md-5 m-3" *ngIf="!spinner">
+        <h1>Login Form</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="form-group">
+                <label class="form-check-label">Email</label>
+                <input type="email" formControlName="loginEmail" class="form-control">
+            </div>
+            <span class="text-danger"
+                  *ngIf="!loginForm.controls.loginEmail.valid && loginForm.controls.loginEmail.touched">
+                Please Enter Valid Email Address</span>
+            <div class="form-group">
+                <label class="form-check-label">Password</label>
+                <input type="password" formControlName="loginPassword" class="form-control">
+            </div>
+            <span class="text-danger"
+                  *ngIf="!loginForm.controls.loginPassword.valid && loginForm.controls.loginPassword.touched">
+                Please Enter valid Password</span>
+            <div>
+                <button class="btn btn-success" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

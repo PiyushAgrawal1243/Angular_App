@@ -1,0 +1,34 @@
+
+.text-font-size{
+    font-size: 1.5rem;
+    color: white;
+    font-family: "Roboto Light";
+    font-weight: bold;
+}
+
+.top-card{
+    z-index: 999;
+
+}
+.bottom-card {
+    z-index: 100;
+    transform: translateY(-212px);
+    transition: transform 0.3s linear  ;
+
+
+}
+.Active {
+    transform: translateY(-80px);
+}
+.Not-Active{
+    transform: translateY(-212px);
+}
+.img-height
+{
+    height: 30vh ;
+}
+
+.button-icon-rotate
+{
+    transform: rotate(270deg);
+}
