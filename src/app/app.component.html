@@ -1,24 +1,31 @@
-<app-nav [title]="title" on-newItemEvent="addItem($event)">
-  <p #content>Hello Mr. Piyush</p>
-</app-nav>
-<div class="row position-relative mt-5 ml-2  ">
-  <div class="col-lg-3 jumbotron m-1 ">
-    <p class="text-info"> add 1+1={{25 | Modulo:10}}</p>
-    <ul class="d-flex flex-column  ">
-      <li class="list-group-item" *ngFor="let item of Item"><p>{{item}}</p></li>
-    </ul>
-    <img [src]="image" alt="image of Angular" class="img-fluid">
-    <p class="text-primary"><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
-    <div [ngSwitch]="value">
-      <p *ngSwitchCase="5">value is 5</p>
-      <p *ngSwitchCase="10">value is 10</p>
-      <p *ngSwitchCase="15">value is 15</p>
-      <p *ngSwitchCase="20">value is 20</p>
-      <p *ngSwitchCase="25">value is 25</p>
-      <p *ngSwitchDefault>Value is {{value}}</p>
+<div *ngIf="!user">
+    <app-register-login></app-register-login>
+</div>
+<div *ngIf="user">
+    <app-nav [title]="title" on-newItemEvent="addItem($event)">
+        <p #content>Hello Mr. Piyush</p>
+    </app-nav>
+    <div class="row position-relative mt-5 d-flex  justify-content-center mb-5 ">
+        <div class="col-xl-4 container-div2 border-success ">
+
+            <div class="card mt-3">
+                <p class="card-header"> add 1+1={{25 | Modulo:10}}</p>
+                <ul class="list-group">
+                    <li class="list-group-item m-2 border" *ngFor="let item of Item"><p>{{item}}</p></li>
+                </ul>
+                <p class="text-primary"><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
+                <div [ngSwitch]="value">
+                    <p *ngSwitchCase="5">value is 5</p>
+                    <p *ngSwitchCase="10">value is 10</p>
+                    <p *ngSwitchCase="15">value is 15</p>
+                    <p *ngSwitchCase="20">value is 20</p>
+                    <p *ngSwitchCase="25">value is 25</p>
+                    <p *ngSwitchDefault>Value is {{value}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7  container-div1">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-  </div>
-  <div class="col-lg-8 jumbotron m-1">
-    <router-outlet></router-outlet>
-  </div>
 </div>
