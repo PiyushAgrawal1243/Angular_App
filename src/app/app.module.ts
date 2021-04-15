@@ -6,31 +6,33 @@ import {StoreModule} from '@ngrx/store';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {NavComponent} from './Components/nav/nav.component';
-import {AboutComponent} from './Components/about/about.component';
-import {HighlightDirective} from './Components/directives/highlight.directive';
-import {ExponentialStrengthPipe} from './pipes/exponential-strength.pipe';
-import {ModuloPipe} from './pipes/modulo.pipe';
-import {BetterDirectiveDirective} from './Components/directives/better-directive.directive';
-import {DropDownDirective} from './Components/directives/dropDown.directive';
-import {NotFoundPageComponent} from './Components/not-found-page/not-found-page.component';
-import {ReactiveFormComponent} from './Components/reactive-form/reactive-form.component';
-import {AuthGuard} from './Services/authGuard.service';
-import {CanDectivate_guardService} from './Services/canDectivate_guard.service';
-import {AppHomePageComponent} from './Components/app-home-page/app-home-page.component';
-import {LoginService} from './Services/login.service';
-import {AuthInterceptorService} from './Services/auth-interceptor.service';
-import {SharedModule} from './SharedUI/shared.module';
-import {AuthService} from './Services/Auth.service';
-import * as fromApp from '../app/Reducer/app.reducer';
+import {NavComponent} from './_sharedUI/nav/nav.component';
+import {AboutComponent} from './_components/about/about.component';
+import {HighlightDirective} from './_directives/highlight.directive';
+import {ExponentialStrengthPipe} from './_pipes/exponential-strength.pipe';
+import {ModuloPipe} from './_pipes/modulo.pipe';
+import {BetterDirectiveDirective} from './_directives/better-directive.directive';
+import {DropDownDirective} from './_directives/dropDown.directive';
+import {NotFoundPageComponent} from './_components/not-found-page/not-found-page.component';
+import {ReactiveFormComponent} from './_components/reactive-form/reactive-form.component';
+import {AuthGuard} from './_services/authGuard.service';
+import {CanDectivate_guardService} from './_services/canDectivate_guard.service';
+import {AppHomePageComponent} from './_components/app-home-page/app-home-page.component';
+import {LoginService} from './_services/login.service';
+import {AuthInterceptorService} from './_services/auth-interceptor.service';
+import {SharedModule} from './_sharedUI/shared.module';
+import {AuthService} from './_services/Auth.service';
+import * as fromApp from './_store/Reducer/app.reducer';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffect} from './_store/Effects/auth.effects';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 @NgModule({
     declarations: [
         AppComponent,
         AppHomePageComponent,
-        NavComponent,
         AboutComponent,
         HighlightDirective,
         ExponentialStrengthPipe,
@@ -49,6 +51,7 @@ import {environment} from '../environments/environment';
         HttpClientModule,
         AppRoutingModule,
         StoreModule.forRoot(fromApp.appReducer),
+       // EffectsModule.forRoot([AuthEffect]),
         SharedModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
@@ -56,6 +59,7 @@ import {environment} from '../environments/environment';
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
         }),
+        ScullyLibModule,
 
     ],
     providers: [AuthService,
