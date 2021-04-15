@@ -1,5 +1,5 @@
 <div *ngIf="!user">
-    <app-register-login></app-register-login>
+  <app-reactive-form></app-reactive-form>
 </div>
 <div *ngIf="user">
     <app-nav [title]="title" on-newItemEvent="addItem($event)">

@@ -3,21 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="aec33f55-694d-4b6d-99ea-80b2af1d86f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/UserData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/UserData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/appservice.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/appservice.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/better-directive.directive.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/better-directive.directive.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/home/home-child/home-child.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home-child/home-child.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav/nav.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav/nav.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/user-detail/user-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user-detail/user-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/user-detail/user-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user-detail/user-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +78,10 @@
       <workItem from="1616775281494" duration="1145000" />
       <workItem from="1616816259103" duration="11380000" />
       <workItem from="1616838163141" duration="4653000" />
-      <workItem from="1616860544759" duration="8378000" />
+      <workItem from="1616860544759" duration="8899000" />
+      <workItem from="1616909119373" duration="4742000" />
+      <workItem from="1617074871791" duration="10455000" />
+      <workItem from="1617091868759" duration="12185000" />
     </task>
     <servers />
   </component>
